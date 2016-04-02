@@ -59,7 +59,12 @@ class CacheControlHelper extends Helper
                 sprintf('%-30s %9u', 'Slots', $status['cache']['num_slots']),
                 sprintf('%-30s %9u', 'Time To Live (TTL)', $status['cache']['ttl']),
                 sprintf('%-30s %9u/%u', 'Hits/Misses', $status['cache']['num_hits'], $status['cache']['num_misses']),
+                sprintf('%-30s %9u', 'Inserts', $status['cache']['num_inserts']),
+                sprintf('%-30s %9u', 'Entries', $status['cache']['num_entries']),
+                sprintf('%-30s %9f', 'Expunges', $status['cache']['expunges']),
                 sprintf('%-29s %s', 'Start', date('c', $status['cache']['start_time'])),
+                sprintf('%-30s %9.2f', 'Memory size', $status['cache']['mem_size'] / 1024) . ' KiB',
+                sprintf('%-30s %s', 'Type', $status['cache']['memory_type'])
             ],
             'comment'
         );
