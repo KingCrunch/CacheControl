@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Crunch\CacheControl\Console;
 
 use Crunch\CacheControl\Connector;
@@ -41,7 +42,7 @@ class AbstractHandlerCommand extends Command
         parent::initialize($input, $output);
     }
 
-    protected function createConnectorInstance($host, $port)
+    protected function createConnectorInstance($host, $port): Connector
     {
         return new Connector(new Client($host, $port));
     }

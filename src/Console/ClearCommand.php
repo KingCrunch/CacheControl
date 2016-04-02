@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Crunch\CacheControl\Console;
 
 use Symfony\Component\Console\Input\InputInterface;

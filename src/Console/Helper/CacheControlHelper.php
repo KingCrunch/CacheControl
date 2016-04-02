@@ -1,32 +1,19 @@
 <?php
+declare(strict_types=1);
 namespace Crunch\CacheControl\Console\Helper;
 
 use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Helper\Helper;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CacheControlHelper extends Helper
 {
-
-    /**
-     * Returns the canonical name of this helper.
-     *
-     * @return string The canonical name
-     *
-     * @api
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'cache-control';
     }
 
-    public function createConnectorInstace (InputInterface $input)
-    {
-
-    }
-
-    public function printOpcacheStatus($status, OutputInterface $output)
+    public function printOpcacheStatus(array $status, OutputInterface $output)
     {
         /** @var FormatterHelper $formatter */
         $formatter = $this->getHelperSet()->get('formatter');

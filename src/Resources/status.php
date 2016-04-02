@@ -3,7 +3,6 @@ namespace Crunch\CacheControl;
 
 const OPCACHE = 'Zend OPcache';
 const APCU = 'apcu';
-const APC = 'apc';
 
 $handler = [];
 

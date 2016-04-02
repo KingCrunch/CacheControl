@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace Crunch\CacheControl;
 
 use Crunch\FastCGI\Client;
@@ -11,22 +12,23 @@ class Connector
      * @var Connection
      */
     protected $connection;
+
     public function __construct (Client $client)
     {
         $this->connection = $client->connect();
     }
 
-    public function clearCache ()
+    public function clearCache(): array
     {
         return $this->query('clear');
     }
 
-    public function fetchStatus ()
+    public function fetchStatus(): array
     {
         return $this->query('status');
     }
 
-    protected function query ($action)
+    protected function query($action): array
     {
         $temporaryCheckout = sys_get_temp_dir() . '/' . uniqid("cache-control.$action.") . '.php';
         copy(__DIR__ . "/Resources/$action.php", $temporaryCheckout);
@@ -43,6 +45,6 @@ class Connector
 
         unlink($temporaryCheckout);
 
-        return unserialize($content);
+        return unserialize($content, ["allowed_classes" => false]);
     }
 }
