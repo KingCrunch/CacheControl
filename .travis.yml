@@ -10,7 +10,6 @@ git:
 
 php:
   - 7.0
-  - hhvm
 
 before_script:
   - wget -Ophpunit.phar https://phar.phpunit.de/phpunit-5.3.0.phar
