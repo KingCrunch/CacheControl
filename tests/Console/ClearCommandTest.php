@@ -2,6 +2,7 @@
 namespace Crunch\CacheControl\Console;
 
 use Crunch\CacheControl\Connector;
+use Crunch\CacheControl\Console\Helper\CacheControlHelper;
 use PHPUnit_Framework_TestCase as TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,12 +26,12 @@ class ClearCommandTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->input = Phake::mock('\Symfony\Component\Console\Input\InputInterface');
-        $this->output = Phake::mock('\Symfony\Component\Console\Output\OutputInterface');
-        $this->connector = Phake::mock('\Crunch\CacheControl\Connector');
-        $this->helper = Phake::mock('\Crunch\CacheControl\Console\Helper\CacheControlHelper');
+        $this->input = Phake::mock(InputInterface::class);
+        $this->output = Phake::mock(OutputInterface::class);
+        $this->connector = Phake::mock(Connector::class);
+        $this->helper = Phake::mock(CacheControlHelper::class);
 
-        $this->subject = phake::partialMock('\Crunch\CacheControl\Console\ClearCommand');
+        $this->subject = Phake::partialMock(ClearCommand::class);
 
         Phake::when($this->subject)->createConnectorInstance(Phake::anyParameters())->thenReturn($this->connector);
         Phake::when($this->subject)->getHelper('cache-control')->thenReturn($this->helper);
@@ -38,7 +39,7 @@ class ClearCommandTest extends TestCase
 
     public function testClearViaHostAndPort()
     {
-        Phake::when($this->connector)->clearCache()->thenReturn(array());
+        Phake::when($this->connector)->clearCache()->thenReturn([]);
         Phake::when($this->input)->getOption('host')->thenReturn('localhost:9000');
 
         $this->subject->run($this->input, $this->output);
@@ -49,7 +50,7 @@ class ClearCommandTest extends TestCase
 
     public function testClearViaSocket()
     {
-        Phake::when($this->connector)->clearCache()->thenReturn(array());
+        Phake::when($this->connector)->clearCache()->thenReturn([]);
         Phake::when($this->input)->getOption('host')->thenReturn('unix:///foo/bar');
 
         $this->subject->run($this->input, $this->output);
@@ -60,7 +61,7 @@ class ClearCommandTest extends TestCase
 
     public function testClearViaSocketPathOnly()
     {
-        Phake::when($this->connector)->clearCache()->thenReturn(array());
+        Phake::when($this->connector)->clearCache()->thenReturn([]);
         Phake::when($this->input)->getOption('host')->thenReturn('/foo/bar');
 
         $this->subject->run($this->input, $this->output);

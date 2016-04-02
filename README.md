@@ -25,14 +25,4 @@ Notes
 
 Requirements
 ============
-* PHP => 5.3
-
-Contributors
-============
-See CONTRIBUTING.md for details on how to contribute.
-
-* Sebastian "KingCrunch" Krebs <krebs.seb@gmail.com> -- http://www.kingcrunch.de/ (german)
-
-License
-=======
-MIT
+* PHP => ^7.0.0

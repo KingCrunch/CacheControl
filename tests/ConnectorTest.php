@@ -20,8 +20,8 @@ class ConnectorTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->fastCgiClient = Phake::mock('Crunch\\FastCGI\\Client');
-        $this->fastCgiConnection = Phake::mock('\Crunch\FastCGI\Connection');
+        $this->fastCgiClient = Phake::mock(Client::class);
+        $this->fastCgiConnection = Phake::mock(Connection::class);
 
         Phake::when($this->fastCgiClient)->connect()->thenReturn($this->fastCgiConnection);
         Phake::when($this->fastCgiConnection)->newRequest(Phake::anyParameters())->thenCallParent();
@@ -31,7 +31,7 @@ class ConnectorTest extends TestCase
     {
         $response = new Response();
         $response->error = '';
-        $response->content = "Some header\r\n\r\n" . serialize(array());
+        $response->content = "Some header\r\n\r\n" . serialize([]);
 
         Phake::when($this->fastCgiConnection)->request(Phake::anyParameters())->thenReturn($response);
 
@@ -50,7 +50,7 @@ class ConnectorTest extends TestCase
     {
         $response = new Response();
         $response->error = '';
-        $response->content = "Some header\r\n\r\n" . serialize(array());
+        $response->content = "Some header\r\n\r\n" . serialize([]);
 
         Phake::when($this->fastCgiConnection)->request(Phake::anyParameters())->thenReturn($response);
 

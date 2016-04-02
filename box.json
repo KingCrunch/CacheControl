@@ -1,17 +1,24 @@
 {
-    "directories": ["src", "bin"],
-    "finder": [
-        {
-            "name": "*.php",
-            "exclude": ["Tests"],
-            "in": "vendor"
-        }
-    ],
-    "main": "bin/cache-control",
-    "output": "cache-control.phar",
-    "compactors": [ "Herrera\\Box\\Compactor\\Php" ],
-    "extract": false,
-    "compression": "GZ",
-    "chmod": "0755",
-    "stub": true
+  "directories": [
+    "src",
+    "bin"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "Tests"
+      ],
+      "in": "vendor"
+    }
+  ],
+  "main": "bin/cache-control",
+  "output": "cache-control.phar",
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php"
+  ],
+  "extract": false,
+  "compression": "GZ",
+  "chmod": "0755",
+  "stub": true
 }

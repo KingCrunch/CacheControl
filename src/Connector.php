@@ -31,13 +31,11 @@ class Connector
         $temporaryCheckout = sys_get_temp_dir() . '/' . uniqid("cache-control.$action.") . '.php';
         copy(__DIR__ . "/Resources/$action.php", $temporaryCheckout);
 
-        $request = $this->connection->newRequest(
-            array(
-                'GATEWAY_INTERFACE' => 'FastCGI/1.0',
-                'REQUEST_METHOD'    => 'GET',
-                'SCRIPT_FILENAME'   => $temporaryCheckout
-            )
-        );
+        $request = $this->connection->newRequest([
+            'GATEWAY_INTERFACE' => 'FastCGI/1.0',
+            'REQUEST_METHOD'    => 'GET',
+            'SCRIPT_FILENAME'   => $temporaryCheckout
+        ]);
         /** @var Response $response */
         $response = $this->connection->request($request);
 
