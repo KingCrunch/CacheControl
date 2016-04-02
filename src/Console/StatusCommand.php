@@ -25,9 +25,6 @@ class StatusCommand extends AbstractHandlerCommand
 
         foreach ($info as $section => $status) {
             switch ($section) {
-                case 'apc':
-                    $helper->printApcStatus($status, $output);
-                    break;
                 case 'apcu':
                     $helper->printApcuStatus($status, $output);
                     break;
